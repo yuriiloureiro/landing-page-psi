@@ -28,6 +28,20 @@ export default function RootLayout({
       <body className={space.className}>
         {children}
         <GoogleAnalytics gaId="G-WSJ22QE39R" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-349142056"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-349142056');
+            `,
+          }}
+        />
       </body>
     </html>
   );
