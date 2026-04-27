@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useState } from "react";
 
 export default function ContactFooter() {
@@ -19,11 +18,9 @@ export default function ContactFooter() {
       name: formData.get("name")?.toString() ?? "",
       email: formData.get("email")?.toString() ?? "",
       phone: formData.get("phone")?.toString() ?? "",
-      // campo honeypot para bots; não deve ser preenchido
       hp: formData.get("hp")?.toString() ?? "",
     };
 
-    // cliente-side basic validation
     if (!payload.name || !payload.email) {
       setError("Por favor, preencha nome e e-mail.");
       return;
@@ -47,6 +44,14 @@ export default function ContactFooter() {
 
       setSuccess(true);
       form.reset();
+
+      // Dispara evento de conversão para GA4 e Google Ads
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag("event", "envio_formulario", {
+          event_category: "formulario",
+          event_label: "landing_psicologo",
+        });
+      }
     } catch (err) {
       console.error(err);
       setError("Erro de rede. Tente novamente mais tarde.");
@@ -62,12 +67,11 @@ export default function ContactFooter() {
       id="contato"
       className="bg-slate-950 pt-24 pb-12 text-white relative overflow-hidden"
     >
-      {/* Background Decorativo Sutil */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent opacity-50" />
 
       <div className="mx-auto max-w-[1280px] px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:items-center mb-24">
-          {/* Lado Esquerdo: Call to Action */}
+          {/* Lado Esquerdo */}
           <div>
             <motion.h2
               initial={{ opacity: 0, x: -20 }}
@@ -106,7 +110,7 @@ export default function ContactFooter() {
             </div>
           </div>
 
-          {/* Lado Direito: Formulário de Lead */}
+          {/* Lado Direito: Formulário */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -135,7 +139,7 @@ export default function ContactFooter() {
                 className="space-y-6"
                 aria-label="Formulário de contato"
               >
-                {/* HONEYPOT - deixe oculto para usuários */}
+                {/* HONEYPOT */}
                 <input
                   aria-hidden="true"
                   tabIndex={-1}
@@ -198,11 +202,9 @@ export default function ContactFooter() {
 
         {/* Rodapé Final */}
         <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-3">
-            <p className="text-slate-500 text-sm font-light">
-              © 2026 Yuri Loureiro. Todos os direitos reservados.
-            </p>
-          </div>
+          <p className="text-slate-500 text-sm font-light">
+            © 2026 Yuri Loureiro. Todos os direitos reservados.
+          </p>
           <p className="text-slate-500 text-[10px] uppercase font-bold tracking-[0.3em]">
             Code & Design by Yuri Loureiro
           </p>
