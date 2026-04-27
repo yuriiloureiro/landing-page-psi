@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "Yuri Loureiro — Sites para Psicólogos",
   description:
     "Landing pages de alta conversão e design premium para psicólogos.",
+  verification: {
+    google: "T2uQE1oKMxHsgHtXx38d7YmQwvTyEZJKoFm2oVf8C9g",
+  },
 };
 
 export default function RootLayout({
