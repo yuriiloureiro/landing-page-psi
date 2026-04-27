@@ -199,19 +199,12 @@ export default function ContactFooter() {
         {/* Rodapé Final */}
         <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-3">
-            <Image
-              src="/images/logo.png"
-              alt="Yuri Loureiro"
-              width={40}
-              height={40}
-              className="invert brightness-0 opacity-40 shrink-0"
-            />
             <p className="text-slate-500 text-sm font-light">
               © 2026 Yuri Loureiro. Todos os direitos reservados.
             </p>
           </div>
           <p className="text-slate-500 text-[10px] uppercase font-bold tracking-[0.3em]">
-            Code & Design by Yuri
+            Code & Design by Yuri Loureiro
           </p>
         </div>
       </div>
