@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Space_Grotesk } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 
 const space = Space_Grotesk({
@@ -24,7 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={space.className}>{children}</body>
+      <body className={space.className}>
+        {children}
+        <GoogleAnalytics gaId="G-WSJ22QE39R" />
+      </body>
     </html>
   );
 }
